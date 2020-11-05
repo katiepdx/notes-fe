@@ -3,7 +3,33 @@
 exports[`App component renders App 1`] = `
 <DocumentFragment>
   <h1>
-    Hello World
+    Note App
   </h1>
+  <form>
+    <label
+      for="note-topic"
+    >
+      Topic
+    </label>
+    <input
+      id="note-topic"
+      name="note-topic"
+      type="text"
+      value=""
+    />
+    <label
+      for="note-details"
+    >
+      Note
+    </label>
+    <textarea
+      id="note-details"
+      name="note-details"
+      type="text"
+    />
+    <button>
+      Add Note
+    </button>
+  </form>
 </DocumentFragment>
 `;
