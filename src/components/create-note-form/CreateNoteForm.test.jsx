@@ -1,8 +1,10 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-// import userEvent testing library for user events
 import userEvent from '@testing-library/user-event'
 import CreateNoteForm from './CreateNoteForm';
+import { Provider } from 'react-redux'
+import store from '../../store';
+import { createNewNote } from '../../service/notes-api';
 
 // Jest mock note api service 
 jest.mock('../../service/notes-api')
@@ -10,7 +12,14 @@ jest.mock('../../service/notes-api')
 describe('<CreateNoteForm/>', () => {
   it('resets form on submit after a successful post', () => {
 
-    render(<CreateNoteForm />)
+    // mock resolved value from api
+    createNewNote.mockResolvedValue({
+      id: '24',
+      topic: 'New Topic',
+      note: 'New Detail'
+    })
+
+    render(<Provider store={store}><CreateNoteForm /></Provider>)
 
     const noteTopicInput = screen.getByLabelText('Topic')
     const noteDetailInput = screen.getByLabelText('Note')

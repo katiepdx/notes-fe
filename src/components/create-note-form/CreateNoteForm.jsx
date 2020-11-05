@@ -2,12 +2,15 @@
 // store form info to local state, then add to global store on submit 
 
 import React, { useState } from 'react'
-import { createNewNote } from '../../service/notes-api'
+import { useDispatch } from 'react-redux'
+import { newNote } from '../../actions/notesActions'
 
 const CreateNoteForm = () => {
   // create local state for form info
   const [noteTopic, setNoteTopic] = useState('')
   const [noteDetails, setNoteDetails] = useState('')
+  // dispatching actions
+  const dispatch = useDispatch()
 
   // handleChange to update state when user types 
   const handleChange = ({ target }) => {
@@ -17,18 +20,18 @@ const CreateNoteForm = () => {
   }
 
   // handleSubmit updates global redux state with local state and resets local state 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
 
-    // test createNewNote works using local state 
-    const apiRes = await createNewNote({
+    // dispatch addNote action which runs newNote function action 
+    dispatch(newNote({
       topic: noteTopic,
       note: noteDetails
-    })
+    }))
 
     // reset state 
-    await setNoteTopic('')
-    await setNoteDetails('')
+    setNoteTopic('')
+    setNoteDetails('')
   }
 
   return (
