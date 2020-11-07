@@ -11,3 +11,12 @@ export const createNewNote = async (note) => {
 
   return apiRes
 }
+export const getAllNotes = async () => {
+  const res = await fetch('http://localhost:7890/api/v1/notes')
+
+  if (!res.ok) throw ('Failed to get notes from the API')
+
+  const apiRes = await res.json()
+  console.log(apiRes, 'SERVICE FILE')
+  return apiRes
+}
