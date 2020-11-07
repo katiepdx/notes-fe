@@ -4,6 +4,7 @@ import NotesList from './NotesList';
 import { Provider } from 'react-redux'
 import store from '../../store';
 import { getAllNotes } from '../../service/notes-api';
+import { MemoryRouter } from 'react-router-dom'
 
 jest.mock('../../service/notes-api')
 
@@ -28,7 +29,13 @@ describe('<NotesList/>', () => {
       }
     ])
 
-    render(<Provider store={store}><NotesList /></Provider>)
+    render(
+      <MemoryRouter>
+        <Provider store={store}>
+          <NotesList />
+        </Provider>
+      </MemoryRouter>
+    )
 
     const notesList = screen.getByTestId('all-notes')
 

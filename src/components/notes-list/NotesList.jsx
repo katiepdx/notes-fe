@@ -1,9 +1,8 @@
-// add test
-
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { notesList } from '../../actions/notesActions'
 import NoteItem from '../note-item/NoteItem'
+import { Link } from 'react-router-dom'
 
 const NotesList = () => {
   const allNotes = useSelector(state => state.allNotes)
@@ -17,7 +16,9 @@ const NotesList = () => {
 
   // Can add, list in console
   const notesElements = allNotes.map(note => (
-    <li key={note.id}><NoteItem topic={note.topic} /></li>
+    <Link to={`/notes/${note.id}`} key={note.id}>
+      <li><NoteItem {...note} /></li>
+    </Link>
   ))
 
   return (
