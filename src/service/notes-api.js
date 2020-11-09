@@ -31,3 +31,17 @@ export const getNoteById = async (id) => {
 
   return apiRes
 }
+
+export const updateNoteById = async (id, note) => {
+  const res = await fetch(`http://localhost:7890/api/v1/notes/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(note),
+    headers: { "Content-Type": "application/json; charset=UTF-8" }
+  })
+
+  if (!res.ok) throw ('Failed to update note')
+
+  const apiRes = await res.json()
+
+  return apiRes
+}

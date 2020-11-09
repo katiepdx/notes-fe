@@ -1,4 +1,4 @@
-import { createNewNote, getAllNotes, getNoteById } from '../service/notes-api'
+import { createNewNote, getAllNotes, getNoteById, updateNoteById } from '../service/notes-api'
 
 export const ADD_NOTE = 'ADD_NOTE'
 export const addNote = (note) => ({
@@ -16,6 +16,12 @@ export const SET_ONE_NOTE = 'SET_ONE_NOTE'
 export const setOneNote = (singleNote) => ({
   type: SET_ONE_NOTE,
   payload: singleNote
+})
+
+export const UPDATE_ONE_NOTE = 'UPDATE_ONE_NOTE'
+export const updateOneNote = (updateNote) => ({
+  type: UPDATE_ONE_NOTE,
+  payload: updateNote
 })
 
 // FUNCTION ACTIONS 
@@ -39,5 +45,12 @@ export const singleNote = (id) => (dispatch) => {
   return getNoteById(id)
     .then(oneNote => {
       dispatch(setOneNote(oneNote))
+    })
+}
+
+export const updateNote = (id, updateNote) => (dispatch) => {
+  return updateNoteById(id, updateNote)
+    .then(note => {
+      dispatch(updateOneNote(note))
     })
 }
