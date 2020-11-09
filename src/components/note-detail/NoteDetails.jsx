@@ -24,6 +24,7 @@ const NoteDetails = () => {
       <section data-testid="note-details">{theNote.note}</section>
 
       <Link to={`/notes/update/${id}`}><button>Update</button></Link>
+      <Link to={`/notes/delete/${id}`}><button>Delete</button></Link>
     </div>
   )
 }

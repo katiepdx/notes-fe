@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom'
 import NoteDetails from '../note-detail/NoteDetails';
 import UpdateNoteForm from '../note-update/UpdateNoteForm';
+import DeleteNote from '../note-delete/DeleteNote';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
           <Route exact path="/add" component={CreateNoteForm} />
           <Route exact path="/notes/:id" component={NoteDetails} />
           <Route exact path="/notes/update/:id" component={UpdateNoteForm} />
+          <Route exact path="/notes/delete/:id" component={DeleteNote} />
         </Switch>
       </Router>
     </>

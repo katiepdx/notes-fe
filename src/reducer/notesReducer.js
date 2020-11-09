@@ -1,6 +1,6 @@
 // add reducer test
 // import notes actions for the switch cases
-import { ADD_NOTE, SET_NOTES, SET_ONE_NOTE, UPDATE_ONE_NOTE } from '../actions/notesActions'
+import { ADD_NOTE, SET_NOTES, SET_ONE_NOTE, UPDATE_ONE_NOTE, DELETE_ONE_NOTE } from '../actions/notesActions'
 
 const initialState = {
   // object from form state with note topic (topic) and note details (note)
@@ -37,6 +37,12 @@ const reducer = ((state = initialState, action) => {
       return {
         ...state,
         note: action.payload
+      }
+
+    case DELETE_ONE_NOTE:
+      return {
+        ...state,
+        allNotes: state.allNotes.filter((note) => note.id !== action.payload.id)
       }
 
     default:

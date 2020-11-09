@@ -45,3 +45,16 @@ export const updateNoteById = async (id, note) => {
 
   return apiRes
 }
+
+export const deleteNoteById = async (id) => {
+  const res = await fetch(`http://localhost:7890/api/v1/notes/${id}`, {
+    method: "DELETE",
+    headers: { "Content-type": "application/json; charset=UTF-8" }
+  })
+
+  if (!res.ok) throw (`Failed to delete note ${id} from the API`)
+
+  const apiRes = await res.json()
+
+  return apiRes
+}
