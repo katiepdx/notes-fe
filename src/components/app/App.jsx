@@ -22,7 +22,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={NotesList} />
           <Route exact path="/add" component={CreateNoteForm} />
-          <Route exact path="/:id" component={NoteDetails} />
+          <Route exact path="/notes/:id" component={NoteDetails} />
         </Switch>
       </Router>
     </>

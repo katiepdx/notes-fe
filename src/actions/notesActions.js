@@ -1,4 +1,4 @@
-import { createNewNote, getAllNotes } from '../service/notes-api'
+import { createNewNote, getAllNotes, getNoteById } from '../service/notes-api'
 
 export const ADD_NOTE = 'ADD_NOTE'
 export const addNote = (note) => ({
@@ -7,10 +7,15 @@ export const addNote = (note) => ({
 })
 
 export const SET_NOTES = 'SET_NOTES'
-// set notes to state - notesList is response from api
 export const setNotes = (notesList) => ({
   type: SET_NOTES,
   payload: notesList
+})
+
+export const SET_ONE_NOTE = 'SET_ONE_NOTE'
+export const setOneNote = (singleNote) => ({
+  type: SET_ONE_NOTE,
+  payload: singleNote
 })
 
 // FUNCTION ACTIONS 
@@ -26,7 +31,13 @@ export const newNote = (newNote) => (dispatch) => {
 export const notesList = () => (dispatch) => {
   return getAllNotes()
     .then(notesList => {
-      console.log(notesList, 'NOTESLIST ACTIONS')
       dispatch(setNotes(notesList))
+    })
+}
+
+export const singleNote = (id) => (dispatch) => {
+  return getNoteById(id)
+    .then(oneNote => {
+      dispatch(setOneNote(oneNote))
     })
 }
